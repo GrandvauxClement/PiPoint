@@ -1,6 +1,6 @@
-# Mon application Vite avec React et TypeScript
+#  PiPoint Application Vite avec React et TypeScript
 
-Ceci est une application Vite avec un template React TypeScript.
+PiPoint est une application Vite avec un template React TypeScript.
 
 ## Installation
 
