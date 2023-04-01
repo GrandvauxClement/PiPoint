@@ -9,7 +9,7 @@ const getAdsAPI = (): Promise<AdType[]> => {
     const apiUrl = import.meta.env.VITE_API_URL;
     return new Promise((resolve, reject) => {
         const request = new Request(
-            `${apiUrl}/test`,
+            `${apiUrl}/pi-point?addressIp=${stopAddressIp}`,
             {
                 method: "GET",
                 headers: {
