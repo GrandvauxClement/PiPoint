@@ -18,16 +18,13 @@ const DisplayAds = (): JSX.Element => {
     React.useEffect(() => {
         getAdsAPI()
             .then((adsReceived) => {
-                console.log("ADS RECEIVED --> ", adsReceived)
                 setAds(adsReceived)
             })
     }, [])
 
     React.useEffect(() => {
         const intervalId = setInterval(() => {
-            console.log("indexAdActive", indexAdActive);
-            console.log("Length ads --> ", ads.length)
-            if (indexAdActive + 1 === ads.length){
+            if (indexAdActive + 1 === ads.length || ads.length === 0){
                 setIndexAdActive(0)
             }else {
                 setIndexAdActive(indexAdActive + 1)
@@ -39,9 +36,31 @@ const DisplayAds = (): JSX.Element => {
         };
     }, [indexAdActive]);
 
+    React.useEffect(() => {
+
+        const intervalId = setInterval(() => {
+            const date = new Date();
+            const hour = date.getHours();
+            // Mettre à jour l'élément à chaque changement d'heure
+            if (date.getMinutes() === 0 && hour < 20 && hour > 5) {
+                getAdsAPI()
+                    .then((adsReceived) => {
+                        setAds(adsReceived)
+                    })
+            }
+        }, 60000); // Vérifie l'heure toutes les minutes
+
+        return () => clearInterval(intervalId);
+    }, [ads]);
 
     return (
-        <div>
+        <div style={{
+            height: "80vh",
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center"
+            }}
+        >
             {ads.length > 0 ?
                 ads[indexAdActive].image === null ?
                     <p>{ads[indexAdActive].title} --- {ads[indexAdActive].text}</p>:

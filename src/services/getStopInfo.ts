@@ -2,14 +2,21 @@
  * Get Ads
  * @returns
  */
-import {AdType} from "../components/DisplayAds";
 
-const getAdsAPI = (): Promise<AdType[]> => {
+export type Stop = {
+    id: number;
+    name: string;
+    latitude: number;
+    longitude: number;
+    adressIp: string;
+}
+
+const getStopInfo = (): Promise<Stop> => {
     const stopAddressIp = import.meta.env.VITE_STOP_ADDRESS_IP;
     const apiUrl = import.meta.env.VITE_API_URL;
     return new Promise((resolve, reject) => {
         const request = new Request(
-            `${apiUrl}/pi-point/ads?addressIp=${stopAddressIp}`,
+            `${apiUrl}/pi-point/stop?addressIp=${stopAddressIp}`,
             {
                 method: "GET",
                 headers: {
@@ -32,4 +39,4 @@ const getAdsAPI = (): Promise<AdType[]> => {
     });
 };
 
-export default getAdsAPI;
+export default getStopInfo;
