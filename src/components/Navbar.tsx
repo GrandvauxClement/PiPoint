@@ -20,7 +20,7 @@ const Navbar = (): JSX.Element => {
                 justifyContent: "space-between",
                 alignItems: "center",
 
-                height: "10vh"
+                height: "5vh"
             }}
         >
             <p>

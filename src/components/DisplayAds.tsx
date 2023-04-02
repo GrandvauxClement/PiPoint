@@ -14,10 +14,12 @@ const DisplayAds = (): JSX.Element => {
 
     const [ads, setAds] = React.useState<AdType[]>([]);
     const [indexAdActive, setIndexAdActive] = React.useState<number>(0)
+    const apiUrl = import.meta.env.VITE_API_URL;
 
     React.useEffect(() => {
         getAdsAPI()
             .then((adsReceived) => {
+                console.log(adsReceived)
                 setAds(adsReceived)
             })
     }, [])
@@ -55,7 +57,7 @@ const DisplayAds = (): JSX.Element => {
 
     return (
         <div style={{
-            height: "80vh",
+            height: "85vh",
             display: "flex",
             justifyContent: "center",
             alignItems: "center"
@@ -64,9 +66,12 @@ const DisplayAds = (): JSX.Element => {
             {ads.length > 0 ?
                 ads[indexAdActive].image === null ?
                     <p>{ads[indexAdActive].title} --- {ads[indexAdActive].text}</p>:
-                    <p>{ads[indexAdActive].image}</p> :
+                    <img
+                        src={`${apiUrl}/assets/${ads[indexAdActive].image}`}
+                        alt={ads[indexAdActive].title}
+                        style={{height: "100%", objectFit:"contain"}}
+                    /> :
                 <h1>ON LOAD !! :)</h1>
-
             }
         </div>
     )
