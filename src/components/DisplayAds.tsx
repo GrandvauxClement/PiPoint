@@ -25,7 +25,9 @@ const DisplayAds = (): JSX.Element => {
     }, [])
 
     React.useEffect(() => {
+        console.log("index --> ", indexAdActive);
         const intervalId = setInterval(() => {
+
             if (indexAdActive + 1 === ads.length || ads.length === 0){
                 setIndexAdActive(0)
             }else {
