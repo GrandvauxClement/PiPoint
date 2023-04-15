@@ -7,20 +7,20 @@ PiPoint est une application Vite avec un template React TypeScript.
 Pour installer cette application, commencez par cloner ce dépôt de code :
 
 ```bash
-    git clone https://github.com/mon-utilisateur/mon-projet.git
+    git clone https://github.com/GrandvauxClement/PiPoint.git
 ```
 
 Ensuite, installez les dépendances avec npm ou yarn :
 
 ```bash
-    cd mon-projet
+    cd PiPoint
     npm install
 ```
 
 ou
 
 ```bash
-    cd mon-projet
+    cd PiPoint
     yarn install
 ```
 

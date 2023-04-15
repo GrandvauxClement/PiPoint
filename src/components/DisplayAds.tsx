@@ -25,20 +25,25 @@ const DisplayAds = (): JSX.Element => {
     }, [])
 
     React.useEffect(() => {
-        console.log("index --> ", indexAdActive);
-        const intervalId = setInterval(() => {
 
-            if (indexAdActive + 1 === ads.length || ads.length === 0){
-                setIndexAdActive(0)
-            }else {
-                setIndexAdActive(indexAdActive + 1)
-            }
+        const intervalId = setInterval( () => {
+            console.log("index --> ", indexAdActive);
+            setIndexAdActive(prevIndex => {
+                // Vérifier si l'index actuel est égal à la longueur des annonces ou à zéro
+                // Si c'est le cas, revenir à l'index zéro, sinon incrémenter l'index
+                if (prevIndex + 1 === ads.length || ads.length === 0) {
+                    return 0;
+                } else {
+                    return prevIndex + 1;
+                }
+            });
         }, 15000);
 
         return () => {
             clearInterval(intervalId);
         };
     }, [indexAdActive]);
+
 
     React.useEffect(() => {
 

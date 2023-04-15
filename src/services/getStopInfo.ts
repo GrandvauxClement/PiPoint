@@ -21,7 +21,10 @@ const getStopInfo = (): Promise<Stop> => {
                 method: "GET",
                 headers: {
                     Accept: "application/json",
-                    "Content-Type": "application/json",
+                    'Content-Type': 'application/json',
+                  //  'Access-Control-Allow-Origin': '**', // Spécifier l'origine autorisée (ou remplacer par l'origine appropriée)
+                  //  'Access-Control-Allow-Headers': 'Origin, X-Requested-With, Content-Type, Accept', // Spécifier les en-têtes autorisés
+                  //  'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE',
                 },
             }
         );
