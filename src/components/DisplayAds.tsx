@@ -30,6 +30,7 @@ const DisplayAds = (): JSX.Element => {
             console.log("index --> ", indexAdActive);
             setIndexAdActive(prevIndex => {
                 // Vérifier si l'index actuel est égal à la longueur des annonces ou à zéro
+                console.log("index --> ", prevIndex);
                 // Si c'est le cas, revenir à l'index zéro, sinon incrémenter l'index
                 if (prevIndex + 1 === ads.length || ads.length === 0) {
                     return 0;

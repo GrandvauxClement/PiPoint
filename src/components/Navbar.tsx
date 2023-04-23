@@ -3,7 +3,8 @@ import getStopInfo, {Stop} from "../services/getStopInfo";
 
 const Navbar = (): JSX.Element => {
 
-    const [stop, setStop] = React.useState<Stop>()
+    const [stop, setStop] = React.useState<Stop>();
+    const [time, setTime] = React.useState<Date>(new Date());
 
     React.useEffect(() => {
         getStopInfo()
@@ -11,6 +12,11 @@ const Navbar = (): JSX.Element => {
                 setStop(data);
             })
     }, []);
+
+    React.useEffect(() => {
+        const timer = setInterval(() => setTime(new Date()),1000);
+        return () => clearInterval(timer);
+    })
 
 
     return (
@@ -27,7 +33,7 @@ const Navbar = (): JSX.Element => {
                 {stop?.name}
             </p>
             <p>
-                {new Date().toLocaleTimeString()} - {new Date().toLocaleDateString()}
+                {time.toLocaleTimeString()} - {new Date().toLocaleDateString()}
             </p>
         </div>
     )
