@@ -54,6 +54,7 @@ const DisplayAds = (): JSX.Element => {
             if (date.getMinutes() === 0 && hour < 20 && hour > 5) {
                 getAdsAPI()
                     .then((adsReceived) => {
+                        adsRef.current = adsReceived;
                         setAds(adsReceived)
                     })
             }
