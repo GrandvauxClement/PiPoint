@@ -13,13 +13,14 @@ export type AdType = {
 const DisplayAds = (): JSX.Element => {
 
     const [ads, setAds] = React.useState<AdType[]>([]);
+    const adsRef = React.useRef<AdType[]>([]);
     const [indexAdActive, setIndexAdActive] = React.useState<number>(0)
     const apiUrl = import.meta.env.VITE_API_URL;
 
     React.useEffect(() => {
         getAdsAPI()
             .then((adsReceived) => {
-                console.log(adsReceived)
+                adsRef.current = adsReceived;
                 setAds(adsReceived)
             })
     }, [])
@@ -27,12 +28,10 @@ const DisplayAds = (): JSX.Element => {
     React.useEffect(() => {
 
         const intervalId = setInterval( () => {
-            console.log("index --> ", indexAdActive);
-            setIndexAdActive(prevIndex => {
+            setIndexAdActive((prevIndex) => {
                 // Vérifier si l'index actuel est égal à la longueur des annonces ou à zéro
-                console.log("index --> ", prevIndex);
                 // Si c'est le cas, revenir à l'index zéro, sinon incrémenter l'index
-                if (prevIndex + 1 === ads.length || ads.length === 0) {
+                if (prevIndex + 1 === adsRef.current.length || adsRef.current.length === 0) {
                     return 0;
                 } else {
                     return prevIndex + 1;
